@@ -1,10 +1,8 @@
 {
-    "name": "ahrnuld/php-mvc-basic",
-    "description": "Basic MVC blog example in PHP",
-    "type": "project",
+    "name": "andreischereper/room-rent",
     "authors": [
         {
-            "name": "Mark de Haan (Ahrnuld)"
+            "name": "Andrei Schereper"
         }
     ],
     "require": {},
