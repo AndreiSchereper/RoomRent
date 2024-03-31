@@ -18,10 +18,10 @@ services:
     mysql:
         image: mariadb:latest
         environment:
-            MYSQL_ROOT_PASSWORD: room123
-            MYSQL_USER: room
-            MYSQL_PASSWORD: room123
-            MYSQL_DATABASE: developmentdb
+            MYSQL_ROOT_PASSWORD: secret123
+            MYSQL_USER: user
+            MYSQL_PASSWORD: password
+            MYSQL_DATABASE: RoomDB
         volumes:
             - mysqldata:/var/lib/mysql
             - ./sql:/docker-entrypoint-initdb.d

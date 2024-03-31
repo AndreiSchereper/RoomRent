@@ -4,17 +4,16 @@ namespace App\Models;
 
 class Reservation implements \JsonSerializable{
 
-        private $id;
+        private $reservationId;
         private $userId;
         private $roomId;
         private $startTime;
         private $endTime;
-        private $timeRemaining; //Solve this
         private $numberOfStudents;
 
-        public function __construct($id, $userId, $roomId, $startTime, $endTime, $numberOfStudents)
+        public function __construct($reservationId, $userId, $roomId, $startTime, $endTime, $numberOfStudents)
         {
-            $this->id = $id;
+            $this->reservationId = $reservationId;
             $this->userId = $userId;
             $this->roomId = $roomId;
             $this->startTime = $startTime;
@@ -24,11 +23,11 @@ class Reservation implements \JsonSerializable{
 
         public function getReservationId()
         {
-            return $this->id;
+            return $this->reservationId;
         }
         public function setReservationId($reservationId)
         {
-            $this->id = $reservationId;
+            $this->reservationId = $reservationId;
         }
         public function getUserId()
         {
@@ -70,7 +69,6 @@ class Reservation implements \JsonSerializable{
         {
             $this->numberOfStudents = $numberOfStudents;
         }
-
         public function jsonSerialize():mixed
         {
             $vars=get_object_vars($this);

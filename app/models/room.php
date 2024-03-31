@@ -4,27 +4,30 @@ namespace App\Models;
 
 class Room implements \JsonSerializable{
 
-        private $id;
+        const SMALL = "small";
+        const MEDIUM = "medium";
+        const LARGE = "large";
+        const AVAILABLE = "available";
+        const RESERVED = "reserved";
+        private $roomId;
         private $roomNumber;
         private $roomType;
-        private $capacity;
         private $status;
 
-        public function __construct($id, $roomNumber, $roomType, $capacity, $status)
+        public function __construct($roomId, $roomNumber, $roomType, $status)
         {
-            $this->id = $id;
+            $this->roomId = $roomId;
             $this->roomNumber = $roomNumber;
             $this->roomType = $roomType;
-            $this->capacity = $capacity;
             $this->status = $status;
         }
         public function getRoomId()
         {
-            return $this->id;
+            return $this->roomId;
         }
         public function setRoomId($roomId)
         {
-            $this->id = $roomId;
+            $this->roomId = $roomId;
         }
         public function getRoomNumber()
         {
@@ -42,14 +45,6 @@ class Room implements \JsonSerializable{
         {
             $this->roomType = $roomType;
         }
-        public function getCapacity()
-        {
-            return $this->capacity;
-        }
-        public function setCapacity($capacity)
-        {
-            $this->capacity = $capacity;
-        }
         public function getStatus()
         {
             return $this->status;
@@ -58,7 +53,6 @@ class Room implements \JsonSerializable{
         {
             $this->status = $status;
         }
-        
         public function jsonSerialize():mixed
         {
             $vars=get_object_vars($this);

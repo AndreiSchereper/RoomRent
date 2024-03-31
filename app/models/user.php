@@ -4,18 +4,22 @@ namespace App\Models;
 
 class User implements \JsonSerializable{
 
-  private $id;
-  private $email;
-  private $password;
-  private $name;
-        private $role;
+    const ROLE_ADMIN = 'admin';
+    const ROLE_USER = 'user';
+    private $userId;
+    private $email;
+    private $password;
+    private $firstName;
+    private $lastName;
+    private $role;
         
-        public function __construct($id, $email, $password, $name, $role)
+        public function __construct($userId, $email, $password, $firstName, $lastName, $role)
         {
-            $this->id = $id;
+            $this->userId = $userId;
             $this->email = $email;
             $this->password = $password;
-            $this->name = $name;
+            $this->firstName = $firstName;
+            $this->lastName = $lastName;
             $this->role = $role;
         }
         public function getPassword()
@@ -25,12 +29,10 @@ class User implements \JsonSerializable{
         public function setPassword($password) {
      
             if(empty($password) || password_needs_rehash($password, PASSWORD_BCRYPT)){
-               // echo "the password is empty ";
                 $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
                 $this->password = $hashedPassword;
             }
             else{
-               // echo "the password is not Empty and does not need to be rehashed ";
                 $this->password = $password;
             }
 
@@ -38,11 +40,11 @@ class User implements \JsonSerializable{
   
         public function getUserId()
         {
-            return $this->id;
+            return $this->userId;
         }  
         public function setUserId($userId)
         {
-            $this->id = $userId;
+            $this->userId = $userId;
         }
         public function getEmail()
         {
@@ -52,13 +54,21 @@ class User implements \JsonSerializable{
         {
             $this->email = $email;
         }
-        public function getName()
+        public function getFirstName()
         {
-            return $this->name;
+            return $this->firstName;
         }
-        public function setName($name)
+        public function setFirstName($firstName)
         {
-            $this->name = $name;
+            $this->firstName = $firstName;
+        }
+        public function getLastName()
+        {
+            return $this->lastName;
+        }
+        public function setLastName($lastName)
+        {
+            $this->lastName = $lastName;
         }
         public function getRole()
         {
@@ -67,6 +77,10 @@ class User implements \JsonSerializable{
         public function setRole($role)
         {
             $this->role = $role;
+        }
+        public function getFullName()
+        {
+            return $this->firstName . ' ' . $this->lastName;
         }
         public function jsonSerialize():mixed
         {
