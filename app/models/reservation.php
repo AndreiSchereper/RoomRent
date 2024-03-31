@@ -11,16 +11,6 @@ class Reservation implements \JsonSerializable{
         private $endTime;
         private $numberOfStudents;
 
-        public function __construct($reservationId, $userId, $roomId, $startTime, $endTime, $numberOfStudents)
-        {
-            $this->reservationId = $reservationId;
-            $this->userId = $userId;
-            $this->roomId = $roomId;
-            $this->startTime = $startTime;
-            $this->endTime = $endTime;
-            $this->numberOfStudents = $numberOfStudents;
-        }
-
         public function getReservationId()
         {
             return $this->reservationId;

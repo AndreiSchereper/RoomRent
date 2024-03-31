@@ -48,7 +48,7 @@ class RoomRepository extends Repository
       echo $e->getMessage();
     }
   }
-  public function getRooms()
+  public function getAllRooms()
   {
     try {
       $sql = "SELECT * FROM rooms";
@@ -60,35 +60,47 @@ class RoomRepository extends Repository
       echo $e->getMessage();
     }
   }
-  public function createRoom($room)
+
+  public function createRoom(Room $room)
   {
     try {
-      $sql = "INSERT INTO rooms (roomName, roomType, roomPrice, roomStatus) VALUES (:roomName, :roomType, :roomPrice, :roomStatus)";
+      $sql = "INSERT INTO rooms (roomNumber, roomType, roomStatus, imagePath) VALUES (:roomNumber, :roomType, :roomStatus, :imagePath)";
       $stmt = $this->connection->prepare($sql);
-      $stmt->bindParam(':roomName', $room->getRoomName());
+      $stmt->bindParam(':roomNumber', $room->getRoomNumber());
       $stmt->bindParam(':roomType', $room->getRoomType());
-      $stmt->bindParam(':roomPrice', $room->getRoomPrice());
-      $stmt->bindParam(':roomStatus', $room->getRoomStatus());
+      $stmt->bindParam(':roomStatus', $room->getStatus());
+      $stmt->bindParam(':imagePath', $room->getImagePath());
       $stmt->execute();
     } catch (PDOException $e) {
       echo $e->getMessage();
     }
   }
 
-  public function updateRoom($room)
+  public function updateRoom(Room $room)
   {
     try {
-      $sql = "UPDATE rooms SET roomName = :roomName, roomType = :roomType, roomPrice = :roomPrice, roomStatus = :roomStatus WHERE roomId = :roomId";
+      $sql = "UPDATE rooms SET roomNumber = :roomNumber, roomType = :roomType, roomStatus = :roomStatus, imagePath = :imagePath WHERE roomId = :roomId";
       $stmt = $this->connection->prepare($sql);
-      $stmt->bindParam(':roomName', $room->getRoomName());
-      $stmt->bindParam(':roomType', $room->getRoomType());
-      $stmt->bindParam(':roomPrice', $room->getRoomPrice());
-      $stmt->bindParam(':roomStatus', $room->getRoomStatus());
       $stmt->bindParam(':roomId', $room->getRoomId());
+      $stmt->bindParam(':roomNumber', $room->getRoomNumber());
+      $stmt->bindParam(':roomType', $room->getRoomType());
+      $stmt->bindParam(':roomStatus', $room->getStatus());
+      $stmt->bindParam(':imagePath', $room->getImagePath());
       $stmt->execute();
     } catch (PDOException $e) {
       echo $e->getMessage();
     }
   }
-  
+
+  public function deleteRoom($roomId)
+  {
+    try {
+      $sql = "DELETE FROM rooms WHERE roomId = :roomId";
+      $stmt = $this->connection->prepare($sql);
+      $stmt->bindParam(':roomId', $roomId);
+      $stmt->execute();
+    } catch (PDOException $e) {
+      echo $e->getMessage();
+    }
+  }
 }

@@ -21,7 +21,7 @@ class RoomRepository extends Repository
         }
     }
 
-    public function getReservations()
+    public function getAllReservations()
     {
         try {
             $sql = "SELECT * FROM reservations";
@@ -57,38 +57,6 @@ class RoomRepository extends Repository
             $stmt->execute();
             $stmt->setFetchMode(PDO::FETCH_CLASS, 'App\Models\Reservation');
             return $stmt->fetchAll();
-        } catch (PDOException $e) {
-            echo $e->getMessage();
-        }
-    }
-    public function createReservation($reservation)
-    {
-        try {
-            $sql = "INSERT INTO reservations (roomId, userId, checkInDate, checkOutDate, totalAmount) VALUES (:roomId, :userId, :checkInDate, :checkOutDate, :totalAmount)";
-            $stmt = $this->connection->prepare($sql);
-            $stmt->bindParam(':roomId', $reservation->getRoomId());
-            $stmt->bindParam(':userId', $reservation->getUserId());
-            $stmt->bindParam(':checkInDate', $reservation->getCheckInDate());
-            $stmt->bindParam(':checkOutDate', $reservation->getCheckOutDate());
-            $stmt->bindParam(':totalAmount', $reservation->getTotalAmount());
-            $stmt->execute();
-        } catch (PDOException $e) {
-            echo $e->getMessage();
-        }
-    }
-
-    public function updateReservation($reservation)
-    {
-        try {
-            $sql = "UPDATE reservations SET roomId = :roomId, userId = :userId, checkInDate = :checkInDate, checkOutDate = :checkOutDate, totalAmount = :totalAmount WHERE reservationId = :reservationId";
-            $stmt = $this->connection->prepare($sql);
-            $stmt->bindParam(':roomId', $reservation->getRoomId());
-            $stmt->bindParam(':userId', $reservation->getUserId());
-            $stmt->bindParam(':checkInDate', $reservation->getCheckInDate());
-            $stmt->bindParam(':checkOutDate', $reservation->getCheckOutDate());
-            $stmt->bindParam(':totalAmount', $reservation->getTotalAmount());
-            $stmt->bindParam(':reservationId', $reservation->getReservationId());
-            $stmt->execute();
         } catch (PDOException $e) {
             echo $e->getMessage();
         }

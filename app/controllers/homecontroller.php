@@ -1,23 +1,20 @@
 <?php
-namespace App\Controllers;
 
-class HomeController
+require_once __DIR__ . '/controller.php';
+require __DIR__ . '/../services/roomService.php';
+
+class HomeController extends Controller
 {
-    private $articleService;
+    private $roomService;
 
     function __construct()
     {
-        $this->articleService = new \App\Services\ArticleService();
+        $this->roomService = new RoomService();
     }
-
     public function index()
     {
-        $model = $this->articleService->getAll();
-        require __DIR__ . '/../views/home/index.php';
+        $rooms = $this->roomService->getRooms();
+        $this->displayView($rooms);
     }
 
-    public function about()
-    {
-        require __DIR__ . '/../views/home/about.php';
-    }
 }

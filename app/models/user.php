@@ -13,15 +13,6 @@ class User implements \JsonSerializable{
     private $lastName;
     private $role;
         
-        public function __construct($userId, $email, $password, $firstName, $lastName, $role)
-        {
-            $this->userId = $userId;
-            $this->email = $email;
-            $this->password = $password;
-            $this->firstName = $firstName;
-            $this->lastName = $lastName;
-            $this->role = $role;
-        }
         public function getPassword()
         {
             return $this->password;
