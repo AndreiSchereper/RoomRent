@@ -28,25 +28,24 @@ class RegisterController extends Controller
                 header('Location: /register');
                 exit;
             } else {
-                // Sanitize input to prevent XSS attacks
+
                 $firstName = htmlspecialchars($_POST['firstName']);
                 $lastName = htmlspecialchars($_POST['lastName']);
                 $email = htmlspecialchars($_POST['email']);
                 $password = htmlspecialchars($_POST['password']);
 
-                // Check if the user already exists
                 if ($this->userService->userExists($email)) {
                     $_SESSION['errorMessage'] = "User already exists";
-                } elseif (!$this->userService->validatePassword($password)) { // Validate password
+                } elseif (!$this->userService->validatePassword($password)) { 
                     $_SESSION['errorMessage'] = "Password must be between 8 and 20 characters";
                 } else {
-                    // Create a new user
+
                     $user = $this->userService->createUser($firstName, $lastName, $email, $password);
                     $this->userService->register($user);
 
-                    // Set a success message and redirect to the login page
+
                     $_SESSION['successMessage'] = "You have successfully registered!\nYou can now log in.";
-                    sleep(1); // Optional: Sleep to simulate processing time
+                    sleep(1); 
 
                     header('Location: /login');
                     exit;

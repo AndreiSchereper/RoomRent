@@ -16,7 +16,7 @@ class RoomService
         return $this->roomRepository->getRoomById($roomId);
     }
     
-    public function getRooms()
+    public function getAllRooms()
     {
         return $this->roomRepository->getAllRooms();
     }

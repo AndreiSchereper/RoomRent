@@ -13,7 +13,7 @@ class HomeController extends Controller
     }
     public function index()
     {
-        $rooms = $this->roomService->getRooms();
+        $rooms = $this->roomService->getAllRooms();
         $this->displayView($rooms);
     }
 

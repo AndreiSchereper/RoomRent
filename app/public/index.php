@@ -1,7 +1,10 @@
 <?php
-require '../vendor/autoload.php';
+
+session_start();
+
+require __DIR__ . '/../routers/patternRouter.php';
 
 $uri = trim($_SERVER['REQUEST_URI'], '/');
 
-$router = new App\PatternRouter();
+$router = new PatternRouter();
 $router->route($uri);
