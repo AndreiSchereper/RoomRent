@@ -17,16 +17,9 @@ class User implements \JsonSerializable{
         {
             return $this->password;
         }
-        public function setPassword($password) {
-     
-            if(empty($password) || password_needs_rehash($password, PASSWORD_BCRYPT)){
-                $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
-                $this->password = $hashedPassword;
-            }
-            else{
-                $this->password = $password;
-            }
-
+        public function setPassword($password) 
+        {
+            $this->password = $password;
         }
   
         public function getUserId()
