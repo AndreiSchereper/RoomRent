@@ -1,0 +1,100 @@
+body {
+    background-color: #f4f7f6;
+    font-family: 'Arial', sans-serif;
+}
+
+.login-panel {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.login-header h2 {
+    margin: 0;
+    color: #333;
+}
+
+.login-footer a {
+    color: #007bff;
+}
+
+.login-footer a:hover {
+    text-decoration: none;
+}
+
+/* Basic navbar styling */
+.navbar {
+    background-color: #f06292; /* Custom pink background */
+    padding: 10px 0;
+}
+
+/* Navbar brand/logo */
+.navbar-brand {
+    color: #fff !important;
+    font-weight: bold;
+    letter-spacing: 1px;
+    transition: color 0.3s ease-in-out;
+}
+
+.navbar-brand:hover {
+    color: #f8bbd0 !important;
+}
+
+/* Navbar links */
+.nav-link {
+    color: #fff !important;
+    margin: 0 10px;
+    transition: color 0.3s ease-in-out;
+}
+
+.nav-link:hover {
+    color: #f8bbd0 !important;
+}
+
+/* Button styling */
+.btn-light {
+    color: #f06292;
+    border-color: #fff;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.btn-light:hover {
+    background-color: #f8bbd0;
+    color: #fff;
+}
+
+/* Enhance the navbar-toggler for a better mobile experience */
+.navbar-toggler {
+    border-color: #fff !important;
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba(255, 255, 255, 0.7)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E") !important;
+}
+
+/* Modernize the look with a shadow */
+.navbar {
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+body {
+    background-color: #f4f7f6;
+}
+
+.card {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: transform 0.2s; /* Animation */
+}
+
+.card:hover {
+    transform: scale(1.05); /* Slightly enlarge cards on hover */
+}
+
+.card img {
+    height: 200px;
+    object-fit: cover; /* Ensure images cover the card top area */
+}
+
+.container h2 {
+    color: #333;
+}
