@@ -1,11 +1,9 @@
 <?php
 
-namespace App\Models;
-
 class User implements \JsonSerializable{
 
     const ROLE_ADMIN = 'admin';
-    const ROLE_USER = 'user';
+    const ROLE_USER = 'student';
     private $userId;
     private $email;
     private $password;

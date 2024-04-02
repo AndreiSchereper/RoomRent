@@ -1,9 +1,9 @@
 <?php
 include_once __DIR__ . '/../repositories/userRepository.php';
 require_once __DIR__ . '/../models/user.php';
-
 class UserService
 {
+  private $user;
   private $userRepository;
 
   public function __construct()
@@ -32,7 +32,7 @@ class UserService
     $user->setLastName($lastName);
     $user->setEmail($email);
     $user->setPassword(password_hash($password, PASSWORD_DEFAULT));
-    $user->setRole('user');
+    $user->setRole('student');
 
     return $user;
   }

@@ -1,0 +1,189 @@
+/* General navbar styling */
+.navbar {
+    padding: 1rem 1rem; /* Increase the vertical padding to make it taller */
+    background-color: #f06292; /* Custom pink background */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.navbar-brand {
+    color: #fff !important;
+    font-weight: bold;
+    letter-spacing: 0.5px; /* Give some letter spacing to the brand name */
+}
+
+/* Style the navbar links */
+.nav-link {
+    color: #fff !important; /* White text color for links */
+    transition: color 0.3s; /* Smooth transition for hover state */
+}
+
+.nav-link:hover,
+.navbar-brand:hover {
+    color: #ffdce0 !important; /* Light pink color for hover */
+}
+
+/* Adjust the toggle button color to match the navbar */
+.navbar-toggler {
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml, ..."); /* No change needed */
+}
+
+/* Modernize the navbar items with a transition */
+.nav-item {
+    transition: transform 0.3s; /* Animation for hover effect */
+}
+
+.nav-item:hover {
+    transform: translateY(-2px); /* Move the nav items up slightly on hover */
+}
+
+.navbar .btn {
+    color: #f06292; 
+    background-color: #fff; 
+    border: 1px solid #fff; 
+    transition: color 0.3s, background-color 0.3s, border-color 0.3s; 
+}
+
+.navbar .btn:hover {
+    color: #fff; 
+    background-color: #f06292; 
+    border-color: #ffdce0; 
+}
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+}
+.header-image {
+    background-size: cover;
+    background-position: center;
+    height: 800px; /* Adjust this value to the desired height */
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+
+.arrow-down {
+    font-size: 48px; 
+    animation: bounce 2s infinite;
+    padding-bottom: 20px;
+    color: #f06292; /* Adjust the color based on your header image */
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-20px);
+    }
+    60% {
+        transform: translateY(-10px);
+    }
+}
+
+.card {
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.card:hover {
+    transform: scale(1.05); /* Slightly scale up the card */
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2); /* Add shadow for depth */
+}
+
+.container {
+    margin-top: 2rem; /* Adjust as needed */
+    margin-bottom: 2rem; /* Ensure equal spacing at the bottom */
+}
+/* Enhance the login panel for better spacing and size */
+.login-panel, .register-panel {
+    padding: 2rem;
+    margin-top: 2rem;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+.login-panel .form-control, .register-panel .form-control {
+    height: auto;
+    padding: 1.25rem;
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+}
+
+.login-panel .btn, .register-panel .btn {
+    padding: 0.75rem 1.5rem;
+    font-size: 1.1rem;
+    width: 100%;
+    border-radius: 20px;
+}
+
+/* If the headers are styled the same, you can keep using .login-header */
+.login-header h2, .register-header h2 {
+    margin-bottom: 2rem;
+}
+
+footer.mt-auto {
+    margin-top: auto;
+}
+#footer {
+    flex-shrink: 0;
+}
+
+/* Footer general styling to match the header */
+footer.bg-light {
+    background-color: #f06292 !important; /* Same as navbar */
+    color: white;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Footer text and link styling */
+footer h5 {
+    color: white;
+    font-weight: bold;
+    letter-spacing: 0.5px; /* Same as navbar-brand */
+    margin-bottom: 1rem;
+}
+
+footer p {
+    color: white; /* Ensuring text is readable on the pink background */
+}
+
+footer .footer-link {
+    color: white;
+    text-decoration: none; /* Remove underline */
+    transition: color 0.3s ease, transform 0.3s ease; /* Add transform to the transition */
+}
+
+footer .footer-link:hover {
+    color: #ffdce0; /* Light pink color for hover */
+    transform: translateY(-2px); /* Move up slightly on hover */
+}
+
+/* Footer bottom bar styling */
+.footer-bottom {
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 1rem;
+    color: white;
+    text-align: center; /* Center align the text */
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+    .footer-bottom {
+        text-align: center; /* Centering the text on smaller screens */
+    }
+}
+

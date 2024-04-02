@@ -50,7 +50,7 @@ class RegisterController extends Controller
                     header('Location: /login');
                     exit;
                 }
-                header('Refresh: 2; URL=/signup');
+                header('Refresh: 2; URL=/register');
                 return;
             }
         }

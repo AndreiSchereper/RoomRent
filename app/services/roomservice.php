@@ -31,18 +31,9 @@ class RoomService
         return $this->roomRepository->getRoomByStatus($roomStatus);
     }
 
-    public function createRoom($roomName, $roomType, $roomPrice, $roomStatus)
+    public function createRoom($room)
     {
-        $room = new Room();
-        $room->setRoomName($roomName);
-        $room->setRoomType($roomType);
-        $room->setRoomPrice($roomPrice);
-        $room->setRoomStatus($roomStatus);
-
-        $room = $this->roomRepository->createRoom($room);
-    
-        return $room;
-
+        return $this->roomRepository->createRoom($room);
     }
     
 
