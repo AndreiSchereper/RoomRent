@@ -1,7 +1,5 @@
 <?php
 
-namespace App\Models;
-
 class Reservation implements \JsonSerializable{
 
         private $reservationId;

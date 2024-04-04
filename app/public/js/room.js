@@ -24,34 +24,43 @@ async function displayRoomOnModal(roomString) {
             <label for="endTime" class="form-label fw-bold">Enter End Time:</label>
             <input type="datetime-local" id="endTime" class="form-control"/>
         </div>
-        <button id="addReservation" onclick="addReservation"class="btn btn-primary mt-4 w-100">Reserve Room</button>
+        <button id="addReservation" onclick="validateAndAddReservation()"class="btn btn-primary mt-4 w-100">Reserve Room</button>
     `;
 }
 
-async function addReservation() {
-    const room = JSON.parse(decodeURIComponent(roomString));
-    const numberOfStudents = document.getElementById("nrOfStudents").value;
-    const startTime = document.getElementById("startTime").value;
-    const endTime = document.getElementById("endTime").value;
+async function validateAndAddReservation() {
+    const nrOfStudents = document.getElementById('nrOfStudents').value;
+    const startTime = document.getElementById('startTime').value;
+    const endTime = document.getElementById('endTime').value;
+    const maxStudents = parseInt(document.getElementById('nrOfStudents').max, 10);
+    
+    // Parse dates and calculate the difference in hours
+    const startTimeDate = new Date(startTime);
+    const endTimeDate = new Date(endTime);
+    const diffHours = (endTimeDate - startTimeDate) / (1000 * 60 * 60);
 
-    const reservation = {
-        roomId: room.roomId,
-        startTime,
-        endTime,
-        numberOfStudents
-    };
+    // Clear previous error messages
+    document.getElementById('errorMessages').innerHTML = '';
 
-    const response = await fetch('/api/reservations', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(reservation),
-    });
-
-    if (response.ok) {
-        window.location.replace('/reservations');
-    } else {
-        alert('Failed to add reservation');
+    // Check if the number of students exceeds the room capacity
+    if (nrOfStudents > maxStudents) {
+        displayErrorMessage('The number of students cannot exceed the room capacity.');
+        return;
     }
+
+    // Check if the time difference is greater than 3 hours
+    if (diffHours > 3) {
+        displayErrorMessage('The duration cannot be longer than 3 hours.');
+        return;
+    }
+
+    // If all checks pass, proceed to add the reservation
+    addReservation();
 }
+
+function displayErrorMessage(message) {
+    const errorMessagesDiv = document.getElementById('errorMessages');
+    errorMessagesDiv.innerHTML = ''; // Clears the container
+    errorMessagesDiv.innerHTML += `<div class="alert alert-danger">${message}</div>`;
+}
+

@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\Reservation;
 
 require __DIR__ . '/repository.php';
 require __DIR__ . '/../models/reservation.php';
