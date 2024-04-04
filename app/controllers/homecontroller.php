@@ -1,7 +1,7 @@
 <?php
 
 require_once __DIR__ . '/controller.php';
-require __DIR__ . '/../services/roomService.php';
+require __DIR__ . '/../services/roomservice.php';
 
 class HomeController extends Controller
 {
@@ -14,7 +14,7 @@ class HomeController extends Controller
     public function index()
     {
         $rooms = $this->roomService->getAllRooms();
-        $this->displayView($rooms);
+        $this->displayView(['rooms' => $rooms]);
     }
 
 }

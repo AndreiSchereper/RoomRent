@@ -1,5 +1,5 @@
 <?php
-include_once __DIR__ . '/../repositories/userRepository.php';
+include_once __DIR__ . '/../repositories/userrepository.php';
 require_once __DIR__ . '/../models/user.php';
 class UserService
 {

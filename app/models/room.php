@@ -1,12 +1,10 @@
 <?php
 
-namespace App\Models;
-
 class Room implements \JsonSerializable{
 
-    const SMALL = "small";
-    const MEDIUM = "medium";
-    const LARGE = "large";
+    const SMALL = "Small";
+    const MEDIUM = "Medium";
+    const LARGE = "Large";
     const AVAILABLE = "available";
     const RESERVED = "reserved";
     private $roomId;

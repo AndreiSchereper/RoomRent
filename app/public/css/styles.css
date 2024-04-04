@@ -187,3 +187,64 @@ footer .footer-link:hover {
     }
 }
 
+/* General modal styling */
+.modal-content {
+    background: #fff;
+    border-radius: 8px;
+}
+
+.modal-header {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.modal-title {
+    color: #333;
+    font-weight: bold;
+}
+
+/* Input fields styling */
+.modal-body input[type="number"],
+.modal-body input[type="date"],
+.modal-body input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+/* Button styling */
+.modal-body .btn {
+    width: 100%;
+    padding: 10px;
+    border-radius: 20px;
+    background-color: #f06292;
+    color: white;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+.modal-body .btn:hover {
+    background-color: #e91e63;
+}
+
+/* Aligning the close button to the right */
+.modal-header .btn-close {
+    margin-left: auto;
+}
+
+#addReservation {
+    padding: .5rem;
+    font-size: 1.1rem;
+    border-radius: 20px;
+    background-color: #f06292;
+    color: white;
+    border: none;
+    transition: background-color 0.3s ease-in-out;
+}
+
+#addReservation:hover {
+    background-color: #e91e63;
+}

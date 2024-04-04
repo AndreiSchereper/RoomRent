@@ -1,5 +1,5 @@
 <?php
-include_once __DIR__ . '/../repositories/roomRepository.php';
+include_once __DIR__ . '/../repositories/roomrepository.php';
 require_once __DIR__ . '/../models/room.php';
 
 class RoomService
@@ -10,25 +10,10 @@ class RoomService
     {
         $this->roomRepository = new RoomRepository();
     }
-    
-    public function getRoomById($roomId)
-    {
-        return $this->roomRepository->getRoomById($roomId);
-    }
-    
+
     public function getAllRooms()
     {
         return $this->roomRepository->getAllRooms();
-    }
-    
-    public function getRoomByType($roomType)
-    {
-        return $this->roomRepository->getRoomByType($roomType);
-    }
-
-    public function getRoomByStatus($roomStatus)
-    {
-        return $this->roomRepository->getRoomByStatus($roomStatus);
     }
 
     public function createRoom($room)
