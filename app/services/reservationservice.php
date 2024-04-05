@@ -11,44 +11,18 @@ class ReservationService
         $this->reservationRepository = new ReservationRepository();
     }
     
-    public function getReservationById($reservationId)
-    {
-        return $this->reservationRepository->getReservationById($reservationId);
-    }
-    
-    public function getReservations()
-    {
-        return $this->reservationRepository->getReservations();
-    }
-    
     public function getReservationsByUserId($userId)
     {
         return $this->reservationRepository->getReservationsByUserId($userId);
     }
 
-    public function getReservationsByRoomId($roomId)
+    public function getALlReservations()
     {
-        return $this->reservationRepository->getReservationsByRoomId($roomId);
-    }
-
-    public function createReservation($userId, $roomId, $checkInDate, $checkOutDate)
-    {
-        $reservation = new Reservation();
-        $reservation->setUserId($userId);
-        $reservation->setRoomId($roomId);
-        $reservation->setCheckInDate($checkInDate);
-        $reservation->setCheckOutDate($checkOutDate);
-    
-        return $reservation;
+        return $this->reservationRepository->getAllReservations();
     }
     
-    public function updateReservation($reservation)
+    public function addReservation($reservation)
     {
-        return $this->reservationRepository->updateReservation($reservation);
-    }
-    
-    public function deleteReservation($reservationId)
-    {
-        return $this->reservationRepository->deleteReservation($reservationId);
+        return $this->reservationRepository->addReservation($reservation);
     }
 }

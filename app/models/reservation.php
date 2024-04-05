@@ -1,5 +1,4 @@
 <?php
-
 class Reservation implements \JsonSerializable{
 
         private $reservationId;

@@ -9,6 +9,7 @@ async function displayRoomOnModal(roomString) {
         maxStudents = 30;
     }
 
+    const roomId = room.roomId;
     reserveContentId.innerHTML = `
         <h5><span class="fw-bold">Room Number:</span> ${room.roomNumber}</h5>
         <p><span class="fw-bold">Room Type:</span> ${room.roomType}</p>
@@ -24,11 +25,15 @@ async function displayRoomOnModal(roomString) {
             <label for="endTime" class="form-label fw-bold">Enter End Time:</label>
             <input type="datetime-local" id="endTime" class="form-control"/>
         </div>
-        <button id="addReservation" onclick="validateAndAddReservation()"class="btn btn-primary mt-4 w-100">Reserve Room</button>
+        <button id="addReservation" class="btn btn-primary mt-4 w-100">Reserve Room</button>
     `;
+
+    document.getElementById("addReservation").addEventListener("click", function () {
+        validateAndAddReservation(roomId); // Now passing both userId and room
+    });
 }
 
-async function validateAndAddReservation() {
+async function validateAndAddReservation(roomId) {
     const nrOfStudents = document.getElementById('nrOfStudents').value;
     const startTime = document.getElementById('startTime').value;
     const endTime = document.getElementById('endTime').value;
@@ -55,12 +60,47 @@ async function validateAndAddReservation() {
     }
 
     // If all checks pass, proceed to add the reservation
-    addReservation();
+    addReservation(roomId);
 }
 
 function displayErrorMessage(message) {
     const errorMessagesDiv = document.getElementById('errorMessages');
     errorMessagesDiv.innerHTML = ''; // Clears the container
     errorMessagesDiv.innerHTML += `<div class="alert alert-danger">${message}</div>`;
+}
+
+async function addReservation(roomId) {
+    if (!userId) {
+        alert('You must be logged in to make a reservation.');
+        return;
+    }
+
+    // Prepare the reservation data
+    const reservationData = {
+        userId: userId,
+        roomId: roomId,
+        startTime: document.getElementById('startTime').value,
+        endTime: document.getElementById('endTime').value,
+        numberOfStudents: document.getElementById('nrOfStudents').value
+    };
+
+    // Call the API to add the reservation
+    fetch('http://localhost/api/reservations', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(reservationData),
+    })
+    .then(response => response.json())
+    .then(data => {
+        if(data.message) {
+            alert(data.message); // Show success message
+            location.reload(); // Reload the page or redirect as needed
+        }
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
 }
 

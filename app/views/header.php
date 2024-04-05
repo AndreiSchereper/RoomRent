@@ -26,9 +26,16 @@ if (isset($_GET['logout']) && $_GET['logout'] == 'true') {
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ml-auto">
+        <?php if(isset($_SESSION['user'])): ?>
             <li class="nav-item active">
                 <a class="nav-link" href="/reservation">Reservations</a>
             </li>
+            <?php if($_SESSION['userRole'] == 'admin'): ?>
+            <li class="nav-item active">
+                <a class="nav-link" href="/cms">Dashboard</a>
+            </li>
+            <?php endif; ?>
+        <?php endif; ?>
         </ul>
         <?php if(!isset($_SESSION['user'])): ?>
         <div class="ms-auto">

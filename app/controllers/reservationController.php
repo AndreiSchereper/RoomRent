@@ -13,8 +13,8 @@ class ReservationController extends Controller
     }
     public function index()
     {
-        $reservations = $this->reservationService->getReservationsByUserId();
-        $this->displayView($reservations);
+        $reservations = $this->reservationService->getReservationsByUserId($_SESSION['userId']);
+        $this->displayView(['reservations' => $reservations]);
     }
 
 }

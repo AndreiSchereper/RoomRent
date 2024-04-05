@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../services/reservationservice.php';
+require_once __DIR__ . '/../../services/reservationservice.php';
 
 class ReservationsController
 {
@@ -30,13 +30,10 @@ class ReservationsController
             echo json_encode($reservations);
         }
 
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            $this->handleReservationRequest('add');
+        if ($_SERVER["REQUEST_METHOD"] == 'POST') {
+            $this->handleReservationRequest('POST');
         }
 
-        if ($_SERVER["REQUEST_METHOD"] == "DELETE") {
-            $this->handleReservationRequest('delete');
-        }
     }
 
     public function handleReservationRequest($request_type)
@@ -57,24 +54,12 @@ class ReservationsController
         $reservation->setEndTime($object->endTime);
         $reservation->setNumberOfStudents($object->numberOfStudents);
 
-####
-        $recipe_title = $this->favoriteService->getFavRecipeTitle($object->recipe_id);
-
         if ($request_type == 'POST') {
-            if (!$this->reservationService->existsInFavorites($favorite)) {
-                $this->favoriteService->addToFavorites($favorite);
-                $message = $recipe_title. ' was added to favorites';
-            }else{
-                $message = $recipe_title.' already exists in favorites';
-            }
-        }
-
-        if ($request_type == 'DELETE') {
-            $this->favoriteService->removeFromFavorites($favorite);
-            $message = $recipe_title.' was removed from favorites';
+            $this->reservationService->addReservation($reservation);
+            $message = 'Reservation added';
         }
 
         header('Content-Type: application/json');
-        echo json_encode(['message' => $message, 'favorite' => $favorite ]);
+        echo json_encode(['message' => $message, 'reservation' => $reservation ]);
     }
 }

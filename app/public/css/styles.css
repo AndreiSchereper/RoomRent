@@ -248,3 +248,15 @@ footer .footer-link:hover {
 #addReservation:hover {
     background-color: #e91e63;
 }
+
+.navbar-text {
+    color: #fff; /* Adjust color to match your site's theme */
+    font-weight: bold; /* Make the text bold */
+    margin-right: 15px; /* Add some space to the right if needed */
+}
+
+/* Optional: Add a custom class for more specific styling if needed */
+.navbar-text.custom-welcome {
+    font-size: 16px; /* Adjust the font size as needed */
+    text-shadow: 0 1px 3px rgba(0,0,0,0.3); /* Optional: Add a subtle text shadow for better readability */
+}
