@@ -25,4 +25,9 @@ class ReservationService
     {
         return $this->reservationRepository->addReservation($reservation);
     }
+
+    public function deleteReservation($reservationId)
+    {
+        return $this->reservationRepository->deleteReservation($reservationId);
+    }
 }

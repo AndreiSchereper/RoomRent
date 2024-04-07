@@ -88,4 +88,16 @@ class ReservationRepository extends Repository
             // Optionally throw an exception or return false
         }
     }
+
+    public function deleteReservation($reservationId)
+    {
+        try {
+            $sql = "DELETE FROM reservations WHERE reservationId = :reservationId";
+            $stmt = $this->connection->prepare($sql);
+            $stmt->bindParam(':reservationId', $reservationId);
+            $stmt->execute();
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
 }

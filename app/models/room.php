@@ -5,13 +5,9 @@ class Room implements \JsonSerializable{
     const SMALL = "Small";
     const MEDIUM = "Medium";
     const LARGE = "Large";
-    const AVAILABLE = "available";
-    const RESERVED = "reserved";
     private $roomId;
     private $roomNumber;
     private $roomType;
-    private $status;
-    private $imagePath;
 
         public function getRoomId()
         {
@@ -36,24 +32,6 @@ class Room implements \JsonSerializable{
         public function setRoomType($roomType)
         {
             $this->roomType = $roomType;
-        }
-        public function getStatus()
-        {
-            return $this->status;
-        }
-        public function setStatus($status)
-        {
-            $this->status = $status;
-        }
-
-        public function getImagePath()
-        {
-            return $this->imagePath;
-        }
-
-        public function setImagePath($imagePath)
-        {
-            $this->imagePath = $imagePath;
         }
         public function jsonSerialize():mixed
         {

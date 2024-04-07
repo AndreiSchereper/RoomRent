@@ -1,3 +1,47 @@
+document.addEventListener('DOMContentLoaded', () => {
+    loadRooms();
+
+    document.getElementById('roomTypeFilter').addEventListener('change', function() {
+        loadRooms(this.value);
+    });
+});
+async function loadRooms(filter = 'All') {
+    let url = 'http://localhost/api/rooms';
+    if (filter !== 'All') {
+        url += `?roomType=${filter}`; 
+    }
+
+    const response = await fetch(url);
+    const rooms = await response.json();
+
+    // Clear previous rooms
+    document.getElementById('roomsContainer').innerHTML = '';
+
+    rooms.forEach(room => {
+        displayRoom(room);
+    });
+}
+
+async function displayRoom(room)
+{
+    const roomsContainer = document.getElementById('roomsContainer');
+    roomsContainer.innerHTML += `
+    <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Room ${room.roomNumber}</h5>
+                        <p class="card-text">Size: ${room.roomType}</p>
+                        ${userId ?
+            `<button onclick="displayRoomOnModal('${encodeURIComponent(JSON.stringify(room))}')" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#reserveModal">Reserve</button>` :
+            `<button class="btn btn-secondary" disabled>Please log in to reserve</button>`
+        }
+                    </div>
+                </div>
+            </div>
+    `;
+}
+
+
 async function displayRoomOnModal(roomString) {
     const room = JSON.parse(decodeURIComponent(roomString));
     const reserveContentId = document.getElementById("reserveContent");
@@ -37,29 +81,32 @@ async function validateAndAddReservation(roomId) {
     const nrOfStudents = document.getElementById('nrOfStudents').value;
     const startTime = document.getElementById('startTime').value;
     const endTime = document.getElementById('endTime').value;
+    
+    // Validate if fields are empty
+    if (!nrOfStudents || !startTime || !endTime) {
+        displayErrorMessage('All fields are required.');
+        return;
+    }
+    
     const maxStudents = parseInt(document.getElementById('nrOfStudents').max, 10);
     
-    // Parse dates and calculate the difference in hours
     const startTimeDate = new Date(startTime);
     const endTimeDate = new Date(endTime);
-    const diffHours = (endTimeDate - startTimeDate) / (1000 * 60 * 60);
+    const diffMinutes = (endTimeDate - startTimeDate) / (1000 * 60);
 
     // Clear previous error messages
     document.getElementById('errorMessages').innerHTML = '';
 
-    // Check if the number of students exceeds the room capacity
     if (nrOfStudents > maxStudents) {
         displayErrorMessage('The number of students cannot exceed the room capacity.');
         return;
     }
 
-    // Check if the time difference is greater than 3 hours
-    if (diffHours > 3) {
-        displayErrorMessage('The duration cannot be longer than 3 hours.');
+    if (diffMinutes < 15) {
+        displayErrorMessage('The duration must be at least 15 minutes.');
         return;
     }
 
-    // If all checks pass, proceed to add the reservation
     addReservation(roomId);
 }
 
@@ -75,7 +122,6 @@ async function addReservation(roomId) {
         return;
     }
 
-    // Prepare the reservation data
     const reservationData = {
         userId: userId,
         roomId: roomId,
@@ -84,7 +130,6 @@ async function addReservation(roomId) {
         numberOfStudents: document.getElementById('nrOfStudents').value
     };
 
-    // Call the API to add the reservation
     fetch('http://localhost/api/reservations', {
         method: 'POST',
         headers: {
@@ -95,12 +140,11 @@ async function addReservation(roomId) {
     .then(response => response.json())
     .then(data => {
         if(data.message) {
-            alert(data.message); // Show success message
-            location.reload(); // Reload the page or redirect as needed
-        }
+            window.location.href = '/reservation';
+        } 
     })
     .catch((error) => {
         console.error('Error:', error);
+        displayErrorMessage('An error occurred while adding the reservation.');
     });
 }
-

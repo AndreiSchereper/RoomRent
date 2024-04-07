@@ -16,6 +16,15 @@ class RoomService
         return $this->roomRepository->getAllRooms();
     }
 
+    public function getRoomById($roomId)
+    {
+        return $this->roomRepository->getRoomById($roomId);
+    }
+
+    public function getRoomsByType($roomType)
+    {
+        return $this->roomRepository->getRoomsByType($roomType);
+    }
     public function createRoom($room)
     {
         return $this->roomRepository->createRoom($room);

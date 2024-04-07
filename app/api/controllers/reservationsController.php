@@ -57,9 +57,21 @@ class ReservationsController
         if ($request_type == 'POST') {
             $this->reservationService->addReservation($reservation);
             $message = 'Reservation added';
+
+            header('Content-Type: application/json');
+            echo json_encode(['message' => $message, 'reservation' => $reservation]);
         }
 
-        header('Content-Type: application/json');
-        echo json_encode(['message' => $message, 'reservation' => $reservation ]);
+        if($_SERVER['REQUEST_METHOD'] === 'DELETE') {
+            try{
+                $reservationId = $_GET['reservationId'];
+                $this->reservationService->deleteReservation($reservationId);
+                header('Content-Type: application/json');
+                echo json_encode(['success' => 'Reservation deleted successfully']);
+            } catch (Exception $e) {
+                header('Content-Type: application/json');
+                echo json_encode(['error' => $e->getMessage()]);
+            }
+        }
     }
 }

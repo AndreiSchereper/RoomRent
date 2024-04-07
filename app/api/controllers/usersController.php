@@ -63,7 +63,7 @@ class UsersController
 
         if ($request_type == 'edit') {
             $user = new User();
-            $user->setId(htmlspecialchars($object->userId));
+            $user->setUserId(htmlspecialchars($object->userId));
             $user->setFirstName(htmlspecialchars($object->firstName));
             $user->setLastName(htmlspecialchars($object->lastName));
             $user->setEmail(htmlspecialchars($object->email));

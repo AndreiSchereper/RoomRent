@@ -260,3 +260,74 @@ footer .footer-link:hover {
     font-size: 16px; /* Adjust the font size as needed */
     text-shadow: 0 1px 3px rgba(0,0,0,0.3); /* Optional: Add a subtle text shadow for better readability */
 }
+
+.text-color {
+    color: #333; /* Adjust the color to fit your theme */
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.crud-btn-style {
+    display: inline-block;
+    margin-right: 10px;
+    background-color: #f06292; /* Pink color to match the navbar */
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.crud-btn-style:hover {
+    background-color: #e91e63; /* Slightly darker pink on hover */
+}
+
+#eventForm {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+#eventForm .form-label {
+    font-weight: bold;
+    color: #333; /* Adjust label color to fit your theme */
+}
+
+#eventForm .form-control {
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    box-shadow: none; /* Remove default Bootstrap input shadow */
+}
+
+#eventMessageAdd {
+    margin-top: 15px;
+    color: #f06292;
+    font-weight: bold;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .crud-btn-style {
+        display: block;
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
+
+.form-container {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    min-height: 60vh; /* Use at least 100% of the viewport height */
+    padding: 20px; /* Optional: for some spacing around the form */
+}
+
+/* Responsive adjustments for the form's direct container to align it in the center on smaller screens */
+@media (max-width: 768px) {
+    .form-container .col-sm-12.col-md-6.col-lg-6 {
+        width: 100%;
+        max-width: 500px; /* Adjust this value based on your preference */
+    }
+}
