@@ -26,3 +26,11 @@ This project is a web-based application designed to facilitate room reservations
 1. **Login as Admin:** Access the admin dashboard using your admin credentials.
 2. **Room Management:** Create, edit, or delete room listings as needed.
 3. **User Management:** View and manage user accounts, including reservation history.
+
+### Student Account
+email: student@email.com
+password: 987654321
+
+### Admin Account
+email: admin@email.com
+password: 123456789
